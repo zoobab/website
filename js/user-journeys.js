@@ -371,8 +371,9 @@ $( document ).ready(function() {
   }
   
 
-});
+    setTimeout(function() {
 
-$(document).ready(function() {
    $("#beginner").trigger('click');
+      
+    } ,500); 
 });
