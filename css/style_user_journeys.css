@@ -254,6 +254,7 @@ button {
   display: inline-block;
   width:250px;
   vertical-align:middle;
+  line-height:1.3em;
 
 
 }
