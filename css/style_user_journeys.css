@@ -40,7 +40,7 @@ width:80%;
 
 .pages a {
   font-family: 'roboto';
-  font-size:11pt;
+  font-size:10pt;
   text-decoration:none !important;
   letter-spacing:0.03em;
   color:#606060;
@@ -428,7 +428,7 @@ i {
   border-radius: 5px; /* future proofing */
   -khtml-border-radius: 5px; /* for old Konqueror browsers */
   background-color:#ffffff;
-      text-transform:none;
+  text-transform:none;
   padding:3%;
   font-size:15px;
   z-index:99;
