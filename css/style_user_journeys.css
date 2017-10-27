@@ -15,12 +15,12 @@ padding: 0px !important;
 
 
 span .editthispage {
-display: -webkit-inline-box; 
+display: -webkit-inline-box !important; 
   
 }
 
 .editthispage {
-display: -webkit-inline-box;  
+display: -webkit-inline-box !important;  
 }
 
 h1 {
@@ -115,11 +115,11 @@ width:80%;
 
 .topheader {
 
- background: url('header.jpg');
- color:#ffffff;
+ background-color: white;
+ color:#303030;
  font-family: 'roboto';
  text-align:center;
- padding:6%;
+ padding:3%;
  font-weight:100;
 
 font-size:24pt;
@@ -535,7 +535,7 @@ font-size:24px;
 
 .tablebar {
   text-align:center;
-  background-color:#3371e3;
+  background-color:#303030;
   padding:1.5%;
   border-bottom:1px solid #3371e3;
 }
