@@ -366,6 +366,7 @@ $( document ).ready(function() {
       $('.buttons').removeClass('selected');
       $(this).addClass('selected');
       if(!stopScroll){
+        $(e.currentTarget).addClass('selected');
         $('html,body').animate({scrollTop: $("#subTitle").offset().top},'slow');
       }
       selected.button = e.currentTarget.getAttribute('data-button');
