@@ -24,7 +24,7 @@ js: /js/user-journeys.js, https://use.fontawesome.com/4bcc658a89.js
   <div class='cards'></div>
 </div>
 
-<div style='text-align: center;'>
+<div style='text-align: center;' class="applicationDeveloperContainer">
     <div class="bar2" id="subTitle">LEVEL</div>
     <div class="bar3">
         <div class="tab1 foundational" id="beginner">
