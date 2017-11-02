@@ -115,7 +115,7 @@ width:80%;
 
 .topheader {
 
- background-color: white;
+ background-color: white !important;
  color:#303030;
  font-family: 'roboto';
  text-align:center;
@@ -124,10 +124,6 @@ width:80%;
 
 font-size:24pt;
 letter-spacing:0.08em;
-
-background-repeat:repeat;
-background-size:contain;
-background-position:center;
 
 
 }
