@@ -13,10 +13,10 @@ js: /js/user-journeys.js, https://use.fontawesome.com/4bcc658a89.js
 {% endunless %}
 
 <div class="bar1">
-    <div class="navButton users">Users</div>
-    <div class="navButton contributors">Contributors</div>
-    <div class="navButton migrators">Migration&nbsp;Paths</div>
-    <a href="#browsedocs"> <div class="navButton">Browse Docs</div></a>
+    <div class="navButton users" onClick="showOnlyDocs(false)">Users</div>
+    <div class="navButton contributors" onClick="showOnlyDocs(false)">Contributors</div>
+    <div class="navButton migrators" onClick="showOnlyDocs(false)">Migration&nbsp;Paths</div>
+    <a href="#browsedocs" onClick="showOnlyDocs(true)"> <div class="navButton">Browse Docs</div></a>
 </div>
 
 <div id="cardWrapper">
