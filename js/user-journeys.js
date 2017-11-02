@@ -381,8 +381,10 @@ function showOnlyDocs(flag){
   if(flag){
     jQuery('.applicationDeveloperContainer').hide();
     jQuery('.infobarWrapper').hide();
+    jQuery('#cardWrapper').hide()
   }else{
     jQuery('.applicationDeveloperContainer').show();
     jQuery('.infobarWrapper').show();
+    jQuery('#cardWrapper').show()
   }
 }
