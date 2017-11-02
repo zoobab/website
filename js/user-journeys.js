@@ -334,7 +334,8 @@ $( document ).ready(function() {
 
     $('.bar1 .users').click();
     setTimeout(function() {
-      $('div[data-button="app_developer"').click();
+      var el = $('div[data-button="app_developer"')[0];
+      handleCardClick(el, true);
     },200);
     $('.cards .buttons').on('click', handleCardClick);
     $('.tab1').on('click', function(e) {
@@ -361,12 +362,12 @@ $( document ).ready(function() {
       $('.infobarWrapper').css('visibility', 'visible');
   }
 
-  function handleCardClick(e) {
+  function handleCardClick(e, stopScroll) {
       $('.buttons').removeClass('selected');
       $(this).addClass('selected');
-
-      $('html,body').animate({scrollTop: $("#subTitle").offset().top},'slow');
-
+      if(!stopScroll){
+        $('html,body').animate({scrollTop: $("#subTitle").offset().top},'slow');
+      }
       selected.button = e.currentTarget.getAttribute('data-button');
       var cardText = e.currentTarget.innerText;
       $('#subTitle').text(cardText);
