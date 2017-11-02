@@ -228,7 +228,7 @@ button {
 }
 
 
-.navButton:hover {
+.navButton:hover, .keepShow {
 
   background-color:#3371e3;
   color:white;
@@ -321,13 +321,13 @@ button {
 
 }
 
-.keepShow {
+/*.keepShow {
 
   background-color:white;
   color:#3371e3;
   border: 2px solid white;
 
-}
+}*/
 
 .tab1 {
   background-color:#ffffff;
