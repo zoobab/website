@@ -333,7 +333,9 @@ $( document ).ready(function() {
     }
 
     $('.bar1 .users').click();
-    $('div[data-button="app_developer"').click();
+    setTimeout(function() {
+      $('div[data-button="app_developer"').click();
+    },200);
     $('.cards .buttons').on('click', handleCardClick);
     $('.tab1').on('click', function(e) {
         $('.tab1').removeClass('selected');
