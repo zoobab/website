@@ -16,7 +16,7 @@ js: /js/user-journeys.js, https://use.fontawesome.com/4bcc658a89.js
     <div class="navButton users" onClick="showOnlyDocs(false)">Users</div>
     <div class="navButton contributors" onClick="showOnlyDocs(false)">Contributors</div>
     <div class="navButton migrators" onClick="showOnlyDocs(false)">Migration&nbsp;Paths</div>
-    <a href="#" onClick="showOnlyDocs(true)"> <div class="navButton">Browse Docs</div></a>
+    <a onClick="showOnlyDocs(true)"> <div class="navButton">Browse Docs</div></a>
 </div>
 
 <div id="cardWrapper">
