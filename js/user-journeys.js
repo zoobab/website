@@ -334,7 +334,7 @@ $( document ).ready(function() {
 
     $('.bar1 .users').click();
     setTimeout(function() {
-      var el = $('div[data-button="app_developer"')[0];
+      var el = {'currentTarget' : $('div[data-button="app_developer"')[0]};
       handleCardClick(el, true);
     },200);
     $('.cards .buttons').on('click', handleCardClick);
