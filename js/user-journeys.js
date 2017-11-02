@@ -366,9 +366,9 @@ $( document ).ready(function() {
       $('.buttons').removeClass('selected');
       $(this).addClass('selected');
       if(!stopScroll){
-        $(e.currentTarget).addClass('selected');
         $('html,body').animate({scrollTop: $("#subTitle").offset().top},'slow');
       }
+      $(e.currentTarget).addClass('selected');
       selected.button = e.currentTarget.getAttribute('data-button');
       var cardText = e.currentTarget.innerText;
       $('#subTitle').text(cardText);
