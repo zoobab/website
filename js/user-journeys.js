@@ -377,3 +377,12 @@ $( document ).ready(function() {
       
     } ,500); 
 });
+function showOnlyDocs(flag){
+  if(flag){
+    jQuery('.applicationDeveloperContainer').hide();
+    jQuery('.infobarWrapper').hide();
+  }else{
+    jQuery('.applicationDeveloperContainer').show();
+    jQuery('.infobarWrapper').show();
+  }
+}
