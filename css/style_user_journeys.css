@@ -40,7 +40,7 @@ width:80%;
 
 .pages a {
   font-family: 'roboto';
-  font-size:10pt;
+  font-size:11pt;
   text-decoration:none !important;
   letter-spacing:0.03em;
   color:#606060;
@@ -62,7 +62,7 @@ width:80%;
 
 .browsedocs {
   font-family: 'roboto' !important;
-  width:70%;
+  width:75%;
   margin-top:2%;
   margin-bottom:5%;
   margin-left:15%;
