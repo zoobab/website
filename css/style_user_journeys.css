@@ -114,24 +114,34 @@ width:80%;
 
 
 .topheader {
-
  background-color: white !important;
  color:#303030;
  font-family: 'roboto';
  text-align:center;
  padding:3%;
  font-weight:100;
-
-font-size:24pt;
-letter-spacing:0.08em;
-
+ font-size:24pt;
+ letter-spacing:0.08em;
 
 }
 
+.docssectionheaders {
+ background-color: white !important;
+ color:#3371e3;
+ font-family: 'roboto';
+ text-align:center;
+ padding:3%;
+ font-weight:100;
+ font-size:22pt;
+ letter-spacing:0.06em; 
+  
+  
+}  
+
 .bar1 {
-padding:1%;
-background-color:#3371e3;
-text-align:center;
+ padding:1%;
+ background-color:#3371e3;
+ text-align:center;
 
 }
 
