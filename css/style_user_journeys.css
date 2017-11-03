@@ -9,28 +9,28 @@ a {
 }
 
 #encyclopedia {
-padding: 0px !important;  
-  
+padding: 0px !important;
+
 }
 
 
 span .editthispage {
-display: -webkit-inline-box !important; 
-  
+display: -webkit-inline-box !important;
+
 }
 
 .editthispage {
-display: -webkit-inline-box !important;  
+display: -webkit-inline-box !important;
 }
 
 h1 {
- 
+
 padding: 3% !important;
 text-align: center !important;
-font-size: 22pt !important; 
+font-size: 22pt !important;
  font-weight:normal;
   color:#303030;
-  
+
 }
 
 .container {
@@ -106,9 +106,9 @@ width:80%;
 
 }
 .browseheader a{
- 
+
    color:white !important;
-  
+
 }
 
 
@@ -126,17 +126,117 @@ width:80%;
 }
 
 .docssectionheaders {
- background-color: white !important;
+ background-color: #ffffff !important;
  color:#3371e3;
  font-family: 'roboto';
  text-align:center;
  padding:3%;
+
  font-weight:100;
  font-size:22pt;
- letter-spacing:0.06em; 
-  
-  
-}  
+ letter-spacing:0.06em;
+}
+
+.docscols {
+width:100%;
+float:left;
+}
+
+.section1 {
+width:100%;
+float:left;
+}
+
+
+.docscol1 {
+background-color:#eeeeee;
+padding:2%;
+margin-right:2%;
+width:28% !important;
+display:inline-block;
+float:left;
+
+}
+
+.docscol2 {
+background-color:#ffffff;
+border:1px solid #aaaaaa;
+padding:2%;
+width:30% !important;
+float:left;
+margin-right:1%;
+display:inline-block;
+
+}
+
+.docscol3 {
+background-color:#ffffff;
+padding:1.5%;
+width:27% !important;
+display:inline-block;
+float:right;
+border:1px solid blue;
+
+}
+
+.docscoltitle {
+float:left;
+padding-top:2%;
+margin-right:2%;
+padding-bottom:3%;
+font-size:12pt;
+font-weight:400;
+color:#3371e3;
+
+}
+
+.docsfullcol1 {
+
+  width:95%;
+  padding:2%;
+  margin:3%;
+}
+
+.docsfullcol2 {
+
+  width:95%;
+  padding:2%;
+  background-color:#eeeeee;
+margin:3%;
+}
+
+.docsfullcol3 {
+background-color:#ffffff;
+padding:2%;
+width:95%;
+display:inline-block;
+
+border:1px solid blue;
+margin:3%;
+
+}
+
+.docsfullcol1icon {
+  width:5%;
+  padding:2%;
+}
+
+.docstitle2 {
+padding:0%;
+padding-bottom:3%;
+font-size:16pt;
+text-align:center;
+font-weight:400;
+padding-top:2%;
+color:#3371e3;
+}
+
+.material-icons {
+
+font-size:50pt !important;
+color:#3371e3;
+
+}
 
 .bar1 {
  padding:1%;
@@ -518,7 +618,7 @@ font-size:24px;
   -khtml-border-radius: 5px; /* for old Konqueror browsers */
   border: 1.5px solid #3371e3;
   padding:1%;
-  background-color:white;
+  background-color:#eeeeee;
   font-size:13px;
   margin:.5%;
   color:#3371e3;
@@ -541,9 +641,9 @@ font-size:24px;
 
 .tablebar {
   text-align:center;
-  background-color:white;
+  background-color:#eeeeee;
   padding:1.5%;
-  border-bottom:1px solid #3371e3;
+
 }
 
 .docsection1 {
@@ -618,15 +718,10 @@ font-size:24px;
 
 
 }
-© 2017 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-API
-Training
-Shop
-Blog
-About
+
+
+.quotedocs {
+  line-height:26pt;
+ font-size:16pt;
+
+}
