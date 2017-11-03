@@ -506,12 +506,12 @@ font-size:24px;
   -webkit-border-radius: 5px;
   border-radius: 5px; /* future proofing */
   -khtml-border-radius: 5px; /* for old Konqueror browsers */
-  border: 1.5px solid white;
+  border: 1.5px solid #3371e3;
   padding:1%;
-  background-color:#3371e3;
+  background-color:white;
   font-size:13px;
   margin:.5%;
-  color:white;
+  color:#3371e3;
   font-family: 'roboto';
   text-transform:uppercase;
   text-align:center;
@@ -531,7 +531,7 @@ font-size:24px;
 
 .tablebar {
   text-align:center;
-  background-color:#3371e3;
+  background-color:white;
   padding:1.5%;
   border-bottom:1px solid #3371e3;
 }
