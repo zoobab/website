@@ -6,6 +6,7 @@ layout: docsportal
 cid: userJourneys
 css: /css/style_user_journeys.css
 js: /js/user-journeys.js, https://use.fontawesome.com/4bcc658a89.js
+display_browse_numbers: true
 ---
 
 {% unless page.notitle %}
@@ -77,140 +78,53 @@ js: /js/user-journeys.js, https://use.fontawesome.com/4bcc658a89.js
 </div>
 
 
-  <div class="browseheader" id="browsedocs">
-      <a name="browsedocs">  Browse Docs</a>
-      </div>
-    
+<div class="browseheader" id="browsedocs">
+    <a name="browsedocs">  Browse Docs</a>
+</div>
+
 <div class="browsedocs">
 
-<div class="browsesection">
+{% assign sections = "setup,concepts,tasks,tutorials,reference" | split: "," %}
 
-        <div class="docstitle">
-          <a href="#">Setup</a>
-        </div>
+{% for section_id in sections %}
 
-        <div class="pages">
-            <div class="browsecolumn">
-
-            <a href="#" >01 - Picking the Right Solution</a><br>
-            <a href="#" >02 - Independent Solutions</a><br>
-          </div>
-          <div class="browsecolumn">
-            <a href="#" >03 - Hosted Solutions</a><br>
-            <a href="#" >04 - Turn-key Cloud Solutions</a><br>
-            </div>
-            <div class="browsecolumn">
-            <a href="#" >05 - Custom Solutions</a><br>
-          </div>
-
-
-        </div>
-
-  </div>
+  {% assign section_data = site.data.[section_id] %}
+  {% assign section_toc = section_data.toc %}
 
   <div class="browsesection">
-
-        <div class="docstitle">
-          <a href="#">Concepts</a>
-        </div>
-
-        <div class="pages">
-          <div class="browsecolumn">
-            <a href="#" >01 - Overview</a><br>
-            <a href="#" >02 - Kubernetes Architecture</a><br>
-            <a href="#" >03 - Extending the Kubernetes API</a><br>
-          </div>
-            <div class="browsecolumn">
-            <a href="#" >04 - Containers</a><br>
-            <a href="#" >05 - Workloads</a><br>
-
-            <a href="#" >06 - Configuration</a><br>
-          </div>
-            <div class="browsecolumn">
-            <a href="#" >07 - Services, Load Balancing, and Networking</a><br>
-            <a href="#" >08 - Storage</a><br>
-            <a href="#" >09 - Cluster Administration</a><br>
-          </div>
-        </div>
-</div>
-
-<div class="browsesection">
-        <div class="docstitle">
-          <a href="#">Tasks</a>
-        </div>
-
-        <div class="pages">
-              <div class="browsecolumn">
-            <a href="#" >01 - Install Tools</a><br>
-            <a href="#" >02 - Configure Pods and Containers</a><br>
-            <a href="#" >03 - Inject Data Into Applications</a><br>
-            <a href="#" >04 - Run Applications</a><br>
-            <a href="#" >05 - Run Jobs</a><br>
-          </div>
-              <div class="browsecolumn">
-            <a href="#" >06 - Access Applications in a Cluster</a><br>
-            <a href="#" >07 - Monitor, Log, and Debug</a><br>
-            <a href="#" >08 - Access and Extend the Kubernetes API</a><br>
-            <a href="#" >09 - TLS</a><br>
-            <a href="#" >10 - Administer a Cluster</a><br>
-          </div>
-              <div class="browsecolumn">
-            <a href="#" >11 - Federation - Run an App on Multiple Clusters</a><br>
-            <a href="#" >12 - Manage Cluster Daemons</a><br>
-            <a href="#" >13 - Manage GPUs</a><br>
-            <a href="#" >14 - Manage HugePages</a><br>
-            <a href="#" >15 - Extend kubectl with plugins</a><br>
-          </div>
-        </div>
-
-</div>
-<div class="browsesection">
-        <div class="docstitle">
-          <a href="#">Tutorials</a>
-        </div>
-
-        <div class="pages">
-          <div class="browsecolumn">
-            <a href="#" >01 - Kubernetes Basics</a><br>
-            <a href="#" >02 - Online Training Courses</a><br>
-            <a href="#" >03 - Configuration</a><br>
-          </div>
-          <div class="browsecolumn">
-            <a href="#" >04 - Object Management Using kubectl</a><br>
-
-            <a href="#" >05 - Stateless Applications</a><br>
-            <a href="#" >06 - Stateful Applications</a><br>
-          </div>
-          <div class="browsecolumn">
-            <a href="#" >07 - Clusters</a><br>
-            <a href="#" >08 - Services</a><br>
-          </div>
-        </div>
-</div>
-
-<div class="browsesection">
-
-        <div class="docstitle">
-          <a href="#">Reference</a>
-        </div>
-
-        <div class="pages">
-          <div class="browsecolumn">
-            <a href="#" >01 - Using the API</a><br>
-            <a href="#" >02 - API Reference</a><br>
-            <a href="#" >03 - Federation API</a><br>
-          </div>
-              <div class="browsecolumn">
-            <a href="#" >04 - kubectl CLI</a><br>
-            <a href="#" >05 - Cloud Controller Manager</a><br>
-            <a href="#" >06 - Setup Tools</a><br>
-          </div>
-              <div class="browsecolumn">
-            <a href="#" >07 - Config Reference</a><br>
-            <a href="#" >08 - Kubernetes Design Docs</a><br>
-            <a href="#" >09 - Kubernetes Issues and Security</a><br>
-          </div>
-            <br><br><br><br><br>
-        </div>
+    <div class="docstitle">
+      <a href="{{ section_data.landing_page }}">{{ section_data.bigheader }}</a>
     </div>
+
+    {% assign section_toc = section_toc | where_exp: "elt", "elt.title != null" %}
+    {% assign num_pages = section_toc | size - 1 %}
+    {% assign column_size = num_pages | divided_by: 3.0 | ceil %}
+
+    <div class="pages">
+
+    {% for i in (1..num_pages) %}
+      {% assign offset = i | modulo: column_size %}
+      {% assign index = i | minus: 1 %}
+      {% assign section_elt = section_toc[index] %}
+
+      {% if page.display_browse_numbers %}
+        {% assign browse_number = i | prepend: "0" | slice: -2, 2 | append: " - " %}
+      {% else %}
+        {% assign browse_number = "" %}
+      {% endif %}
+
+      {% if offset == 1 %}
+        <div class="browsecolumn">
+      {% endif %}
+
+      {% assign elt_url = section_elt.path | default: section_elt.landing_page | default: "#" %}
+      <a href="{{ elt_url }}">{{ section_elt.title | prepend: browse_number }}</a><br>
+      {% if offset == 0 or i == num_pages %}
+        </div>
+      {% endif %}
+    {% endfor %}
+    </div>
+  </div>
+
+{% endfor %}
 </div>
