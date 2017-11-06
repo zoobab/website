@@ -27,13 +27,10 @@ Their application can simply use it as a service.
 
 ## Architecture
 
-Service Catalog is built on the [Open Service Broker API](https://github.com/openservicebrokerapi/servicebroker) and is implemented as a set of deployments: 
+Service Catalog is built on the [Open Service Broker API](https://github.com/openservicebrokerapi/servicebroker) and is implemented as an extension API server, controller manager, and etcd operator.
+It communicates with Service Brokers via the OSB API and acts as an intermediary for the Kubernetes API Server in order to negotiate the initial provisioning and return the credentials necessary for the application to use a Managed Service.
 
-* Extension API server
-* Controller manager
-* Etcd operator
-
-It communicates with Service Brokers via the OSB API and acts as an intermediary for the Kubernetes API Server in order to negotiate the initial provisioning and return the credentials necessary for the application to use the Managed Service.
+<br>
 
 ![Service Catalog Architecture](/images/docs/service-catalog-architecture.svg)
 
@@ -75,66 +72,148 @@ Service Catalog supports these methods of authentication:
 
 The Cluster Operator can use the Service Catalog API Resources to provision Managed Services and make them available within the Kubernetes cluster. The steps involved are:
 
-1. Add a `ServiceBroker` resource.
-2. List the Managed Services available from a Service Broker.
-3. Provision a new instance of the Managed Service.
-4. Bind to the Managed Service, which returns the connection credentials.
-5. Map the connection credentials into the Kubernetes application.
+1. Listing the Managed Services available from a Service Broker.
+1. Provisioning a new instance of the Managed Service.
+1. Binding to the Managed Service, which returns the connection credentials.
+1. Mapping the connection credentials into the application.
 
-### Adding a ServiceBroker resource
+### Listing Managed Services
 
-A `ServiceBroker` resource contains the URL and connection details necessary to access a Service Broker endpoint. It must be created within the `servicecatalog.k8s.io` group.
+First, the Cluster Operator must create a `ServiceBroker` resource within the `servicecatalog.k8s.io` group. This resource contains the URL and connection details necessary to access a Service Broker endpoint.
 
-The following is an example of a `ServiceBroker` resource:
+This is an example of a `ServiceBroker` resource:
 
 ```yaml
 apiVersion: servicecatalog.k8s.io/v1alpha1
 kind: ServiceBroker
 metadata:
-  name: gcp-broker
+  name: cloud-broker
 spec:
-  url:  https://servicebroker.googleapis.com/v1alpha1/projects/service-catalog/brokers/default
+  # Points to the endpoint of a Service Broker. (This example is not a working URL.)
+  url:  https://servicebroker.somecloudprovider.com/v1alpha1/projects/service-catalog/brokers/default
   # Describes the secret which contains the short-lived bearer token
   authInfo:
     bearer:
       secretRef:
-        name: gcp-svc-account-secret
+        name: cloud-svc-account-secret
         namespace: service-catalog
 ```
 
-### Listing Managed Services
+The following is a sequence diagram illustrating the steps involved in listing Managed Services available from a Service Broker:
 
-1. The Cluster Operator must first add ServiceBroker Resources to the Service Catalog API Server. These resources identify available Service Brokers and point to their URL endpoints.
-1. Service Catalog then requests a list of Services from the Service Broker.
-1. The Service Broker returns a list of Services to the ServiceClass resource, which is created and persisted in the Service Catalog API Server.
-1. The Service Consumer can then locally query the ServiceClass Resource for a list of available Services.
+![List Services](/images/docs/service-catalog-list.svg){:height="80%" width="80%"}
 
-![List Services](/images/docs/service-catalog-list.png){:height="80%" width="80%"}
+1. Once the `ServiceBroker` resource is added to Service Catalog, it triggers a *List Services* call to the external Service Broker.
+1. The Service Broker returns a list of available Managed Services, which is cached locally in a `ServiceClass` resource.
+1. The Cluster Operator can then get the list of available Managed Services using the following command:
 
-### Provisioning a new Service
+        kubectl get serviceclasses
 
-1. The Service Consumer provisions a new instance by sending a POST command to the Service Catalog API Server, which creates and persists an Instance Resource.
-1. Service Catalog then requests an instance from the Service Broker by sending an PUT command.
-1. The Service Broker creates a new instance of the Service. 
-1. If the creation was successful, the Service Broker returns an HTTP 200 response.
-1. The Service Consumer can then check the status of the instance to see if it is ready.
+### Provisioning a new instance
 
-![Provision a Service](/images/docs/service-catalog-provision.png){:height="80%" width="80%"}
+The Cluster Operator can initiate the provisioning of a new instance by creating a `ServiceInstance` resource. 
 
-### Binding to a Service
+This is an example of a `ServiceInstance` resource:
 
-1. The Service Consumer requests a binding to the instance by sending a POST command to the Service Catalog API Server, which creates and persists a Binding Resource.
-1. Service Catalog in turn requests a binding from the Service Broker using a PUT command.
-1. The Service Broker then returns provider-specific information, such as coordinates, credentials, configs, necessary for Kubernetes to connect and access the Service instance.
-1. The binding information and credentials are delivered to the Kubernetes API Server as a set of Kubernetes objects, such as a Service, Secret, ConfigMap, or Pod Preset.
+```yaml
+apiVersion: servicecatalog.k8s.io/v1alpha1
+kind: ServiceInstance
+metadata:
+  name: cloud-mysql-instance
+  namespace: cloud-apps
+spec:
+  # References one of the previously returned services
+  serviceClassName: mysql
+  planName: mysql-plan
+```
 
-![Bind to a Service](/images/docs/service-catalog-bind.png){:height="80%" width="80%"}
+The following is a sequence diagram illustrating the steps involved in listing Managed Services available from a Service Broker:
+
+![Provision a Service](/images/docs/service-catalog-provision.svg){:height="80%" width="80%"}
+
+1. When the `ServiceInstance` resource is created, Service Catalog initiates a *Provision Instance* call to the external Service Broker.
+1. The Service Broker creates a new instance of the Managed Service and returns an HTTP 200 response if the provisioning was successful.
+1. The Cluster Operator can then check the status of the instance to see if it is ready.
+
+### Binding to a Managed Service
+
+After a new instance has been provisioned, the Cluster Operator must bind to the Managed Service to get the connection credentials and service account details necessary for the application to use the service. This is done by creating a `ServiceBinding` resource. 
+
+The following is an example of a `ServiceBinding` resource:
+
+```yaml
+apiVersion: servicecatalog.k8s.io/v1alpha1
+kind: ServiceBinding
+metadata:
+  name: cloud-mysql-binding
+  namespace: cloud-apps
+spec:
+  instanceRef:
+    name: cloud-mysql-instance
+  # Secret to store returned data from bind call
+  # Currently:
+  #   project: provider project id
+  #   serviceAccount: same as passed as parameter
+  #   subscription: generated subscription name
+  #   topic: generated topic name
+  secretName: cloud-mysql-credentials
+  parameters:
+    # provider *app* service account
+    serviceAccount: "someuser@auth.somecloudprovider.com"
+    # publisher or subscriber
+    roles: ["roles/mysql.subscriber"]
+```
+
+![Bind to a Service](/images/docs/service-catalog-bind.svg){:height="80%" width="80%"}
+
+1. After the `ServiceBinding` is created, Service Catalog makes a *Bind Instance* call to the external Service Broker.
+1. The Service Broker enables the application permissions/roles for the appropriate service account.
+1. The Service Broker returns the information necessary to connect and access the Managed Service instance. This is provider and service-specific so the information returned may differ between Service Providers and their Managed Services.
 
 ### Mapping the connection credentials
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque egestas nisl eget justo eleifend, ac lacinia lectus pellentesque. Donec facilisis, massa suscipit suscipit sollicitudin, augue libero imperdiet lacus, sed hendrerit metus massa mattis nisi. Suspendisse vestibulum massa id hendrerit lacinia. Aliquam eleifend nulla a metus molestie bibendum.
+After binding, the final step involves mapping the connection credentials and service-specific information into the application. These pieces of information are stored in secrets that an application in the cluster can access.
 
-Sed eu blandit leo. Suspendisse ut laoreet elit. Praesent elementum placerat fringilla. Integer convallis metus felis, vitae pulvinar orci viverra nec. Cras auctor luctus eros, sed fringilla nibh convallis non.
+<br>
+
+![Map connection credentials](/images/docs/service-catalog-map.svg){:height="80%" width="80%"}
+
+
+#### Pod Configuration File
+
+One method to perform this mapping is to use a declarative Pod configuration.
+
+The following example describes how to map service account credentials into the application. A key called `sa-key` is stored in a volume named `google-cloud-key`, and the application mounts this volume at `/var/secrets/google/key.json`. The environment variable `GOOGLE_APPLICATION_CREDENTIALS` is mapped from the value of the mounted file.
+
+```yaml
+...
+    spec:
+      volumes:
+        - name: provider-cloud-key
+          secret:
+            secretName: sa-key
+      containers:
+...
+          volumeMounts:
+          - name: provider-cloud-key
+            mountPath: /var/secrets/provider
+          env:
+          - name: PROVIDER_APPLICATION_CREDENTIALS
+            value: "/var/secrets/provider/key.json"
+```
+
+The following example describes how to map secret values into application environment variables. In this example, the MySql topic name is mapped from a secret named `provider-mysql-credentials` with a key named `topic` to the environment variable `TOPIC`.
+
+
+```yaml
+...
+          env:
+          - name: "TOPIC"
+            valueFrom:
+                secretKeyRef:
+                   name: provider-mysql-credentials
+                   key: topic
+```
 
 {% endcapture %}
 
