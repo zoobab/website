@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="-1 -1 841 457" width="841pt" height="457pt" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <metadata> Produced by OmniGraffle 7.5 
-    <dc:date>2017-11-07 07:41:42 +0000</dc:date>
+    <dc:date>2017-11-07 08:04:59 +0000</dc:date>
   </metadata>
   <defs>
     <font-face font-family="Arial" font-size="16" panose-1="2 11 6 4 2 2 2 2 2 4" units-per-em="1000" underline-position="-105.95703" underline-thickness="73.24219" slope="0" x-height="518.5547" cap-height="716.3086" ascent="905.2734" descent="-211.91406" font-weight="500">
@@ -83,10 +83,7 @@
       </text>
       <line x1="602.9" y1="249.5" x2="637.1" y2="249.5" marker-end="url(#FilledArrow_Marker)" marker-start="url(#FilledArrow_Marker_2)" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
       <line x1="192.9" y1="39.33634" x2="202.1" y2="39.33634" marker-end="url(#FilledArrow_Marker)" marker-start="url(#FilledArrow_Marker_2)" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-      <path d="M 300 212.9 L 300 215.9 L 300 315.5 L 369.5 315.5 L 404.1 315 L 407.1 315" marker-end="url(#FilledArrow_Marker)" marker-start="url(#FilledArrow_Marker_2)" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-      <text transform="translate(307.63672 323.3037)" fill="black">
-        <tspan font-family="Arial" font-size="12" font-weight="500" x=".14257812" y="11" textLength="72.71484">Bind Instance</tspan>
-      </text>
+      <path d="M 300 200 L 300 215.9 L 300 315.5 L 369.5 315.5 L 404.1 315 L 407.1 315" marker-end="url(#FilledArrow_Marker)" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
       <rect x="430" y="285" width="150" height="80" fill="white"/>
       <text transform="translate(440 296.21484)" fill="#383838">
         <tspan font-family="Arial" font-size="12" font-weight="bold" fill="#383838" x="0" y="11" textLength="40.6875">Secret:</tspan>

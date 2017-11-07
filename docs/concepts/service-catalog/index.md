@@ -127,7 +127,7 @@ spec:
   planName: mysql-plan
 ```
 
-The following is a sequence diagram illustrating the steps involved in listing Managed Services available from a Service Broker:
+The following is a sequence diagram illustrating the steps involved in provisioning a new instance of a Managed Service:
 
 ![Provision a Service](/images/docs/service-catalog-provision.svg){:height="80%" width="80%"}
 
@@ -164,7 +164,9 @@ spec:
     roles: ["roles/mysql.subscriber"]
 ```
 
-![Bind to a Service](/images/docs/service-catalog-bind.svg){:height="80%" width="80%"}
+The following is a sequence diagram illustrating the steps involved in binding to a Managed Service instance:
+
+![Bind to a Managed Service](/images/docs/service-catalog-bind.svg){:height="80%" width="80%"}
 
 1. After the `ServiceBinding` is created, Service Catalog makes a *Bind Instance* call to the external Service Broker.
 1. The Service Broker enables the application permissions/roles for the appropriate service account.
@@ -172,12 +174,12 @@ spec:
 
 ### Mapping the connection credentials
 
-After binding, the final step involves mapping the connection credentials and service-specific information into the application. These pieces of information are stored in secrets that an application in the cluster can access.
+After binding, the final step involves mapping the connection credentials and service-specific information into the application.
+These pieces of information are stored in secrets that the application in the cluster can access and use to connect directly with the Managed Service.
 
 <br>
 
-![Map connection credentials](/images/docs/service-catalog-map.svg){:height="80%" width="80%"}
-
+![Map connection credentials](/images/docs/service-catalog-map.svg)
 
 #### Pod Configuration File
 

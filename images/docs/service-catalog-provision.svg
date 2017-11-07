@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="71 1022 560 377" width="560pt" height="377pt" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <metadata> Produced by OmniGraffle 7.5 
-    <dc:date>2017-11-06 21:59:42 +0000</dc:date>
+    <dc:date>2017-11-07 07:41:42 +0000</dc:date>
   </metadata>
   <defs>
     <filter id="Shadow" filterUnits="userSpaceOnUse">
@@ -72,10 +72,9 @@
       </text>
       <line x1="133.5" y1="1106.6307" x2="269.3522" y2="1107.5215" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
       <line x1="133.5" y1="1279.0592" x2="269.3522" y2="1279.95" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-      <rect x="158.55904" y="1266.9957" width="83" height="25" fill="white"/>
-      <text transform="translate(163.55904 1272.2994)" fill="black">
-        <tspan font-family="Arial" font-size="12" font-weight="500" x=".25976562" y="11" textLength="24.66797">GET</tspan>
-        <tspan font-family="Arial" font-size="12" font-weight="500" x="24.710938" y="11" textLength="48.029297"> instance</tspan>
+      <rect x="143.55904" y="1266.9957" width="113" height="25" fill="white"/>
+      <text transform="translate(148.55904 1272.2994)" fill="black">
+        <tspan font-family="Arial" font-size="12" font-weight="500" x=".13964844" y="11" textLength="102.7207">get serviceinstance</tspan>
       </text>
       <line x1="311" y1="1310.1637" x2="145.92202" y2="1351.8969" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
       <rect x="189.53932" y="1321.797" width="52" height="25" fill="white"/>
