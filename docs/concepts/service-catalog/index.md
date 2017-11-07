@@ -70,7 +70,7 @@ Service Catalog supports these methods of authentication:
 
 ## Usage
 
-The Cluster Operator can use the Service Catalog API Resources to provision Managed Services and make them available within the Kubernetes cluster. The steps involved are:
+The {% glossary_tooltip text="Cluster Operator" term_id="cluster-operator" %} can use the Service Catalog API Resources to provision Managed Services and make them available within the Kubernetes cluster. The steps involved are:
 
 1. Listing the Managed Services available from a Service Broker.
 1. Provisioning a new instance of the Managed Service.
@@ -222,7 +222,6 @@ The following example describes how to map secret values into application enviro
 
 {% capture whatsnext %}
 * [Install Service Catalog](/docs/tasks/service-catalog/install-service-catalog/) in your Kubernetes cluster.
-* Learn how to [provision and bind an external Service with Service Catalog](/docs/tasks/service-catalog/provision-bind-external-service/).
 * View [sample service brokers](https://github.com/openservicebrokerapi/servicebroker/blob/master/gettingStarted.md#sample-service-brokers).
 * Explore the [kubernetes-incubator/service-catalog](https://github.com/kubernetes-incubator/service-catalog) project.
 
