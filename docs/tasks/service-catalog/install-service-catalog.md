@@ -5,7 +5,7 @@ approvers:
 ---
 
 {% capture overview %}
-{% include templates/glossary/snippet.md term="service-catalog" length="long" %}
+{% glossary_definition term_id="service-catalog" length="long" %}
 
 Use the [Service Catalog Installer](https://github.com/GoogleCloudPlatform/k8s-service-catalog#installation) tool to easily install or uninstall Service Catalog on your Kubernetes cluster. This CLI tool is installed as `sc` in your local environment.
 
@@ -13,7 +13,7 @@ Use the [Service Catalog Installer](https://github.com/GoogleCloudPlatform/k8s-s
 
 
 {% capture prerequisites %}
-* Understand key concepts of [Service Catalog](/docs/concepts/service-catalog/).
+* Understand the key concepts of [Service Catalog](/docs/concepts/service-catalog/).
 * Install [Go 1.6+](https://golang.org/dl/) and set the `GOPATH`.
 * Install the [cfssl](https://github.com/cloudflare/cfssl) tool needed for generating SSL artifacts. 
 * Service Catalog requires Kubernetes version 1.7+.
@@ -58,13 +58,11 @@ sc install --etcd-backup-storageclass "standard"
 
 ## Uninstall Service Catalog
 
-To uninstall Service Catalog from your Kubernetes cluster using the `sc` tool, run:
+If you would like to uninstall Service Catalog from your Kubernetes cluster using the `sc` tool, run:
 
 ```shell
 sc uninstall
 ```
-
-That should remove Service Catalog from your Kubernetes cluster.
 
 {% endcapture %}
 
