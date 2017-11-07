@@ -5,7 +5,7 @@ approvers:
 ---
 
 {% capture overview %}
-{% include templates/glossary/snippet.md term="service-catalog" length="all" %}
+{% glossary_definition term_id="service-catalog" length="all" %}
 
 {% endcapture %}
 
@@ -13,7 +13,7 @@ approvers:
 {% capture body %}
 ## Example use case
 
-An [Application Developer](/docs/reference/glossary/?user-type=true#term-application-developer) wants to use a datastore, such as MySQL, as part of their application running in a Kubernetes cluster.
+An {% glossary_tooltip text="Application Developer" term_id="application-developer" %} wants to use a datastore, such as MySQL, as part of their application running in a Kubernetes cluster.
 However, they do not want to deal with the overhead of setting one up and administrating it themselves.
 Fortunately, there is a cloud provider that offers MySQL databases as a *Managed Service* through their *Service Broker*.
 
@@ -21,7 +21,7 @@ A *Service Broker*, as defined by the [Open Service Broker API spec](https://git
 Some examples of *Managed Services* are Azure SQL Database, Amazon EC2, and Google Cloud Pub/Sub, but they can be any software offering that can be used by an application, typically available via HTTP REST endpoints.
 {: .note}
 
-Using Service Catalog, the Cluster Operator can browse the list of Managed Services offered by a Service Broker, provision a MySQL database instance, and bind with it to make it available to the application within the Kubernetes cluster.
+Using Service Catalog, the {% glossary_tooltip text="Cluster Operator" term_id="cluster-operator" %} can browse the list of Managed Services offered by a Service Broker, provision a MySQL database instance, and bind with it to make it available to the application within the Kubernetes cluster.
 The Application Developer therefore does not need to concern themselves with the implementation details or management of the database.
 Their application can simply use it as a service.
 
