@@ -1,3 +1,4 @@
+[![noswpatv3](http://zoobab.wdfiles.com/local--files/start/noupcv3.jpg)](https://ffii.org/donate-now-to-save-europe-from-software-patents-says-ffii/)
 ## Instructions for Contributing to the Kubernetes Documentation
 
 Welcome! We are very pleased you want to contribute to the Kubernetes documentation.
